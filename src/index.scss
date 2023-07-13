@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto&display=swap');
+
+html {
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Montserrat', 'Roboto', 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  color: rgba(0, 28, 54, 0.60);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+h1 {
+  font-family: Montserrat;
+	font-size: 8rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 10.4rem;
+	text-align: center;
+}
+
+h3 {
+  text-align: center;
+	font-family: Montserrat;
+	font-size: 5.6rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 6.4rem;
+}
+
+h5 {
+  text-align: center;
+	font-family: Montserrat;
+	font-size: 4rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 4.8rem;
+}
+
+
+

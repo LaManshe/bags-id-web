@@ -1,0 +1,56 @@
+@use '../../vars';
+
+.PrimaryButton {
+    position: relative;
+    border-radius: 1.6rem;
+    border: none;
+    background-color: vars.$primary-color;
+    height: 144px;
+    padding: 3.2rem 8rem 3.2rem 8rem;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%; 
+        top: 0%;
+        left: 0;
+        transform: scaleX(0.3);
+        transition: transform .3s ease-out;
+        opacity: 0;
+
+        background: vars.$primary-click-color;
+
+        z-index: 1;
+    }  
+
+    &:active::before {
+        transform: scaleX(2);
+        opacity: 0.4;
+    }
+
+    &[disabled]:active::before {
+        opacity: 0;
+    }
+
+    & span {
+        position: relative;
+        font-family: Montserrat;
+        font-size: 4rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.04rem;
+        color: white;
+
+        z-index: 3;
+    }
+
+    & img {
+        width: 100%;
+        height: 100%; 
+
+        object-fit: contain;
+    }
+}

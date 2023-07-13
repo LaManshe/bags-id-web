@@ -1,0 +1,17 @@
+.ContentArea {
+    position: fixed;
+    top: 114.6rem;
+    background-color: white;
+    border-top-left-radius: 3.2rem;
+    border-top-right-radius: 3.2rem;
+    padding: 8rem;
+
+    height: 164.3rem;
+    width: 100%;
+
+    transition: top .3s ease-out;
+}
+
+.open {
+    top: 27.7rem;
+}

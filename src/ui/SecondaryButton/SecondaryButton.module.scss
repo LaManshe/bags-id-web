@@ -1,0 +1,27 @@
+@use '../../vars';
+
+.SecondaryButton {
+    position: relative;
+    border-radius: 1.6rem;
+    border: none;
+    background-color: vars.$secondary-color;
+    padding: 3.2rem 8rem 3.2rem 8rem;
+    height: 14.4rem;
+    width: 100%;
+    overflow: hidden;
+
+    &:active {
+        background-color: vars.$secondary-click-color;
+    }
+
+    & span {
+        font-family: Montserrat;
+        font-size: 4rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 0.04rem;
+
+        color: vars.$primary-color;
+    }
+}

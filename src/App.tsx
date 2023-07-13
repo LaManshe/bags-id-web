@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import WelcomePage from './pages/WelcomePage/WelcomePage';
+import TicketVerifyPage from './pages/TicketVerifyPage/TicketVerifyPage';
+import TicketDataConfirmationPage from './pages/TicketDataConfirmationPage/TicketDataConfirmationPage';
+import { ROUTES } from './types/routes';
+
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route path={ROUTES.HOME_PAGE} element={<Layout />}>
+    <Route index element={<WelcomePage />} />
+    <Route path={ROUTES.TICKET_PAGE} element={<TicketVerifyPage />} />
+    <Route path={ROUTES.TICKET_CONFIRMATION_PAGE} element={<TicketDataConfirmationPage />} />
+    <Route path='*' element={<WelcomePage />} />
+  </Route>
+));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
