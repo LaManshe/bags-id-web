@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../types/routes";
-import { useContent } from "./useContent";
-import { IModalConfig } from "../hoc/ContentProvider";
+import { useCallback, useMemo } from "react";
+import { useModal } from "./useModal";
+import { IModalConfig } from "../hoc/ModalProvider";
 
 interface IModalInfo {
     showModalInfo: () => void;
@@ -9,10 +10,11 @@ interface IModalInfo {
 }
 
 export default function useModalInfo(): IModalInfo {
-    const {setModalBackIsOpen, setModalConfig} = useContent();
+    const {setModalIsOpen, setModalConfig} = useModal();
     const navigate = useNavigate();
 
-    const modalBackConfig: IModalConfig = {
+    const modalBackConfig: IModalConfig = useMemo(() => {
+      return {
         title: <>Распечатайте <br /> посадочный талон</>, 
         description: <>Перейдите на главный экран <br /> и выберите пункт <br /> «Распечатать посадочный».</>,
         applyButtonText: 'Перейти',
@@ -21,16 +23,18 @@ export default function useModalInfo(): IModalInfo {
           navigate(ROUTES.HOME_PAGE);
         },
         onCancel: () => { }
-      }
+      };
+    }, []);
+      
 
-    const showModalInfo = () => {
-        setModalConfig(modalBackConfig);
-        setModalBackIsOpen(true);
-    }
+    const showModalInfo = useCallback(() => {
+      setModalConfig(modalBackConfig);
+      setModalIsOpen(true);
+    }, [modalBackConfig]);
 
-    const forceCloseModalInfo = () => {
-      setModalBackIsOpen(false);
-    }
+    const forceCloseModalInfo = useCallback(() => {
+      setModalIsOpen(false);
+    }, [modalBackConfig]);
 
     return {showModalInfo, forceCloseModalInfo};
 }

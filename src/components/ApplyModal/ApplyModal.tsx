@@ -3,25 +3,25 @@ import styles from './ApplyModal.module.scss';
 import Spacer from '../../ui/Spacer/Spacer';
 import DangerButton from '../../ui/DangerButton/DangerButton';
 import SecondaryButton from '../../ui/SecondaryButton/SecondaryButton';
-import { useContent } from '../../hooks/useContent';
+import { useModal } from '../../hooks/useModal';
 
 const ApplyModal: FC = () => {
-  const {modalBackIsOpen, setModalBackIsOpen, modalConfig} = useContent();
+  const {modalIsOpen, setModalIsOpen, modalConfig} = useModal();
 
   const applyHandle = (): void => {
-    setModalBackIsOpen(false);
+    setModalIsOpen(false);
     modalConfig.onApply();
   }
 
   const cancelHandle = (): void => {
-    setModalBackIsOpen(false);
+    setModalIsOpen(false);
     modalConfig.onCancel();
   }
 
   return (
   <>
     {
-      modalBackIsOpen && 
+      modalIsOpen && 
         <div className={styles.Mask}>
           <div className={styles.ApplyModal}>
             <div className={styles.ModalContent}>

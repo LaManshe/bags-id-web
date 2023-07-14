@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../types/routes";
-import { useContent } from "./useContent";
-import { IModalConfig } from "../hoc/ContentProvider";
+import { useCallback, useMemo } from "react";
+import { useModal } from "./useModal";
+import { IModalConfig } from "../hoc/ModalProvider";
 
 interface IModalBackFunc {
     showModalBack: () => void;
@@ -9,28 +10,30 @@ interface IModalBackFunc {
 }
 
 export default function useModalBack(): IModalBackFunc {
-    const {setModalBackIsOpen, setModalConfig} = useContent();
+    const {setModalIsOpen, setModalConfig} = useModal();
     const navigate = useNavigate();
 
-    const modalBackConfig: IModalConfig = {
-        title: <>Выйти на главный <br /> экран?</>, 
-        description: <>Процесс сдачи багажа будет <br /> прерван. Вы перейдете на главный <br /> экран системы.</>,
-        applyButtonText: 'Выйти',
-        cancelButtonText: 'Отменить',
-        onApply: () => { 
-            navigate(ROUTES.HOME_PAGE);
-        },
-        onCancel: () => { }
-    }
+    const modalBackConfig: IModalConfig = useMemo(() => {
+        return {
+            title: <>Выйти на главный <br /> экран?</>, 
+            description: <>Процесс сдачи багажа будет <br /> прерван. Вы перейдете на главный <br /> экран системы.</>,
+            applyButtonText: 'Выйти',
+            cancelButtonText: 'Отменить',
+            onApply: () => { 
+                navigate(ROUTES.HOME_PAGE);
+            },
+            onCancel: () => { }
+        }
+    }, []);
 
-    const showModalBack = () => {
+    const showModalBack = useCallback(() => {
         setModalConfig(modalBackConfig);
-        setModalBackIsOpen(true);
-    }
+        setModalIsOpen(true);
+    }, [modalBackConfig]);
 
-    const forceCloseModalBack = () => {
-        setModalBackIsOpen(false);
-    }
+    const forceCloseModalBack = useCallback(() => {
+        setModalIsOpen(false);
+    }, [modalBackConfig]);
 
     return {showModalBack, forceCloseModalBack};
 }

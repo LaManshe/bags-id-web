@@ -6,17 +6,20 @@ import ContentArea from '../ContentArea/ContentArea';
 import { ContentProvider } from '../../hoc/ContentProvider';
 import ApplyModal from '../ApplyModal/ApplyModal';
 import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
+import { ModalProvider } from '../../hoc/ModalProvider';
 
 const Layout: FC = () => (
   <div className={styles.Layout}>
     <ErrorBoundary>
       <ContentProvider>
-        <BackgroundArea>
-            <ContentArea>
-              <Outlet />
-            </ContentArea>
-        </BackgroundArea>
-        <ApplyModal />
+        <ModalProvider>
+          <BackgroundArea>
+              <ContentArea>
+                <Outlet />
+              </ContentArea>
+          </BackgroundArea>
+          <ApplyModal />
+        </ModalProvider>
       </ContentProvider>
     </ErrorBoundary>
   </div>

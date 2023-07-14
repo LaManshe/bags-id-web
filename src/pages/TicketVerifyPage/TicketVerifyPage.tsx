@@ -27,18 +27,23 @@ const TicketVerifyPage: FC = () => {
   }, []);
 
   const getTicketCode = async () => {
-    const code = await TicketService.GetTicketCode(1);
+    const code: string | null = await TicketService.GetTicketCode(1);
     
     if (code) {
       setHasTicket(true);
-      forceCloseModalInfo();
 
-      const data: ITicketData = await TicketService.GetTicketData(code);
+      await getTicketData(code);
+    }
+  }
 
-      if (data) {
-        if (isMounted.current) {
-          navigate(ROUTES.TICKET_CONFIRMATION_PAGE, {state: data});
-        }
+  async function getTicketData(code: string) {
+    forceCloseModalInfo();
+
+    const data: ITicketData | null = await TicketService.GetTicketData(code);
+
+    if (data) {
+      if (isMounted.current) {
+        navigate(ROUTES.TICKET_CONFIRMATION_PAGE, { state: data });
       }
     }
   }
