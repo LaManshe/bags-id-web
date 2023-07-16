@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import PrimaryButton from '../../ui/PrimaryButton/PrimaryButton';
 import SecondaryButton from '../../ui/SecondaryButton/SecondaryButton';
-import { Ticket } from '../../resources/ResourcesService';
 import { ITicketData } from '../../services/http/interfaces/ITicketData';
 import { addWordAfterNumber } from '../../helpers/words';
 import AirCompanyLogoHelper from '../../resources/AirCompanyLogoHelper';
@@ -20,14 +19,14 @@ const TicketDataConfirmationPage: FC = () => {
       </div>
       <div className="row m-2" style={{height: "40%"}}>
         <div className="row mb-2">
-          <h1 className='display-3'>Данные вашего билета</h1>
+          <h1 className='display-3 fw-bold'>Данные вашего билета</h1>
         </div>
         <div className="row text-start">
           <div className="col-4">
             <h5 className='display-6'><small className='text-muted'>Имя, Фамилия</small></h5>
           </div>
           <div className="col">
-            <h5 className='display-5 text-truncate'><strong>{data.name || 'Неизвестно'}</strong></h5>
+            <h5 className='display-5 fw-bold text-truncate'><strong>{data.name || 'Неизвестно'}</strong></h5>
           </div>
         </div>
         <div className="row text-start">
@@ -40,10 +39,10 @@ const TicketDataConfirmationPage: FC = () => {
         </div>
         <div className="row text-start">
           <div className="col-4">
-            <h5 className='display-5'><small className='text-muted'>Дата вылета</small></h5>
+            <h5 className='display-6'><small className='text-muted'>Дата вылета</small></h5>
           </div>
           <div className="col">
-            <h5 className='display-4'>{data.departureTime || 'Неизвестно'}</h5>
+            <h5 className='display-5'>{data.departureTime || 'Неизвестно'}</h5>
           </div>
         </div>
         <div className="row text-start">

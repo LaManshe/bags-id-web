@@ -25,10 +25,10 @@ const ApplyModal: FC = () => {
           <div className="row text-center position-absolute start-50 top-50 w-100 translate-middle" style={{maxWidth: '1200px', height: '40vh', maxHeight: '720px'}}>
             <div className="col d-flex flex-column rounded bg-white p-3">
               <div className="row m-2" style={{height: '40%'}}>
-                <h1 className='display-3'>{modalConfig.title}</h1>
+                <h1 className='display-4'>{modalConfig.title}</h1>
               </div>
               <div className="row m-2" style={{height: '40%'}}>
-                <h3 className='display-5'>{modalConfig.description}</h3>
+                <h3 className='display-6'>{modalConfig.description}</h3>
               </div>
               <div className="row m-2" style={{height: '20%'}}>
                 <div className="col h-100 me-1">
