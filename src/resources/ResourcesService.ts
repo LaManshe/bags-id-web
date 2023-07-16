@@ -1,11 +1,11 @@
 export const Background = require('./images/Background.png');
 export const Cancel = require('./images/Cancel.png');
 export const WaitForScan = require('./images/WaitForScan.png');
+export const SuccessWaitForScan = require('./images/SuccessWaitForScan.png');
 export const Spinner = require('./gifs/spinner.gif');
 export const BagsIdLogo = require('./images/BagsIdLogo.png');
-export const Status = require('./images/Status.png');
 export const Ticket = require('./images/Ticket.png');
-export const PobedaLogo = require('./images/PobedaLogo.png');
-export const AeroflotLogo = require('./images/AeroflotLogo.png');
-export const S7Logo = require('./images/S7Logo.png');
-export const UTairLogo = require('./images/UTairLogo.png');
+export const TicketAeroflot = require('./images/TicketAeroflot.png');
+export const TicketPobeda = require('./images/TicketPobeda.png');
+export const TicketS7 = require('./images/TicketS7.png');
+export const TicketUTair = require('./images/TicketUTair.png');

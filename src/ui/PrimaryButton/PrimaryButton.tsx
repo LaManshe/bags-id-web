@@ -9,7 +9,7 @@ interface PrimaryButtonProps {
 
 const PrimaryButton: FC<PrimaryButtonProps> = ({onClickHandle, children, attributes = {}}: PrimaryButtonProps) => (
   <button 
-    className={styles.PrimaryButton} 
+    className={`${styles.PrimaryButton}`} 
     onClick={onClickHandle}
     {...attributes}>
       {setContent(children)}
@@ -18,7 +18,7 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({onClickHandle, children, attribu
 
 const setContent = (content: ReactNode): ReactNode => {
   if (typeof(content) === 'string') {
-    return <span>{content}</span>
+    return <h1><strong>{content}</strong></h1>
   }
 
   return content;

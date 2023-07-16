@@ -1,4 +1,4 @@
-import { AeroflotLogo, PobedaLogo, S7Logo, UTairLogo } from "./ResourcesService";
+import { Ticket, TicketAeroflot, TicketPobeda, TicketS7, TicketUTair } from "./ResourcesService";
 
 export default class AirCompanyLogoHelper {
     static getLogo(company: string | null): string {
@@ -8,15 +8,15 @@ export default class AirCompanyLogoHelper {
         
         switch (company) {
             case 'Pobeda':
-                return PobedaLogo;
+                return TicketPobeda;
             case 'Aeroflot':
-                return AeroflotLogo;
+                return TicketAeroflot;
             case 'UTair':
-                return UTairLogo;
+                return TicketUTair;
             case 'S7':
-                return S7Logo;
+                return TicketS7;
             default:
-                return '';
+                return Ticket;
         }
     }
 }

@@ -1,48 +1,67 @@
 import React, { FC } from 'react';
-import styles from './TicketDataConfirmationPage.module.scss';
 import { useLocation } from 'react-router-dom';
 import PrimaryButton from '../../ui/PrimaryButton/PrimaryButton';
 import SecondaryButton from '../../ui/SecondaryButton/SecondaryButton';
-import Spacer from '../../ui/Spacer/Spacer';
 import { Ticket } from '../../resources/ResourcesService';
-import AirCompanyLogoHelper from '../../resources/AirCompanyLogoHelper';
 import { ITicketData } from '../../services/http/interfaces/ITicketData';
 import { addWordAfterNumber } from '../../helpers/words';
+import AirCompanyLogoHelper from '../../resources/AirCompanyLogoHelper';
 
 const TicketDataConfirmationPage: FC = () => {
   const location = useLocation();
   const data: ITicketData = location.state ?? (() => {throw new Error("Не удалось получить данные о билете")})();
   
   return (
-    <div className={styles.TicketDataConfirmationPage}>
-      <div className={styles.TicketView}>
-        <img src={Ticket} className={styles.TicketShape}/>
-        {AirCompanyLogoHelper.getLogo(data.airCompany) && <img src={AirCompanyLogoHelper.getLogo(data.airCompany)} className={styles.AirCompanyLogo} />}
-      </div>
-      <Spacer size={27} />
-      <h3>Данные вашего билета</h3>
-      <div className={styles.TicketData}>
-        <div className={styles.Row}>
-          <div className={styles.Key}>Имя, Фамилия</div>
-          <div className={`${styles.Value} ${styles.Bold}`}>{data.name || 'Неизвестно'}</div>
-        </div>
-        <div className={styles.Row}>
-          <div className={styles.Key}>Рейс</div>
-          <div className={styles.Value}>{data.flight || 'Неизвестно'}</div>
-        </div>
-        <div className={styles.Row}>
-          <div className={styles.Key}>Дата вылета</div>
-          <div className={styles.Value}>{data.departureTime || 'Неизвестно'}</div>
-        </div>
-        <div className={styles.Row}>
-          <div className={styles.Key}>Багаж</div>
-          <div className={styles.Value}>{addWordAfterNumber(data.bag, 'мест')}</div>
+    <div className="container-fluid d-flex flex-column h-100 text-center p-2">
+      <div className="row m-2" style={{height: "40%"}}>
+        <div className="col h-100 position-relative">
+          <img src={AirCompanyLogoHelper.getLogo(data.airCompany)} className={`img-contain`}/>
         </div>
       </div>
-      <div className={styles.Controls}>
-        <PrimaryButton onClickHandle={() => { }}>Все верно, продолжить</PrimaryButton>
-        <Spacer size={40} />
-        <SecondaryButton onClickHandle={() => { }}>Данные не верны</SecondaryButton>
+      <div className="row m-2" style={{height: "40%"}}>
+        <div className="row mb-2">
+          <h1 className='display-3'>Данные вашего билета</h1>
+        </div>
+        <div className="row text-start">
+          <div className="col-4">
+            <h5 className='display-6'><small className='text-muted'>Имя, Фамилия</small></h5>
+          </div>
+          <div className="col">
+            <h5 className='display-5 text-truncate'><strong>{data.name || 'Неизвестно'}</strong></h5>
+          </div>
+        </div>
+        <div className="row text-start">
+          <div className="col-4">
+            <h5 className='display-6'><small className='text-muted'>Рейс</small></h5>
+          </div>
+          <div className="col">
+            <h5 className='display-5'>{data.flight || 'Неизвестно'}</h5>
+          </div>
+        </div>
+        <div className="row text-start">
+          <div className="col-4">
+            <h5 className='display-5'><small className='text-muted'>Дата вылета</small></h5>
+          </div>
+          <div className="col">
+            <h5 className='display-4'>{data.departureTime || 'Неизвестно'}</h5>
+          </div>
+        </div>
+        <div className="row text-start">
+          <div className="col-4">
+            <h5 className='display-6'><small className='text-muted'>Багаж</small></h5>
+          </div>
+          <div className="col">
+            <h5 className='display-5'>{addWordAfterNumber(data.bag, 'мест')}</h5>
+          </div>
+        </div>
+      </div>
+      <div className="row m-2" style={{height: "20%"}}>
+        <div className="row align-items-center justify-content-center mb-2">
+          <PrimaryButton onClickHandle={() => { }}>Все верно, продолжить</PrimaryButton>
+        </div>
+        <div className="row align-items-center justify-content-center">
+          <SecondaryButton onClickHandle={() => { }}>Данные не верны</SecondaryButton>
+        </div>
       </div>
     </div>
   );

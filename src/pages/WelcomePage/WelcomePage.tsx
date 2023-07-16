@@ -1,9 +1,7 @@
 import React, { FC, useEffect } from 'react';
-import styles from './WelcomePage.module.scss';
 import PrimaryButton from '../../ui/PrimaryButton/PrimaryButton';
 import { useNavigate } from 'react-router-dom';
 import SecondaryButton from '../../ui/SecondaryButton/SecondaryButton';
-import Spacer from '../../ui/Spacer/Spacer';
 import { animated, useSpring } from '@react-spring/web';
 import { ROUTES } from '../../types/routes';
 import { useContent } from '../../hooks/useContent';
@@ -31,14 +29,19 @@ const WelcomePage: FC = () => {
   }, []);
 
   return (
-    <animated.div className={styles.WelcomePage} style={{...springs}}>
-      <PrimaryButton onClickHandle={clickHandle}>Сдать багаж</PrimaryButton>
-      <Spacer size={24} />
-      <SecondaryButton onClickHandle={() => {  }}>Распечатать посадочный</SecondaryButton>
-      <Spacer size={80} />
-      <p>Если вы не зарегистрированы</p>
-      <Spacer size={40} />
-      <SecondaryButton onClickHandle={() => {  }}>Зарегистрироваться на рейс</SecondaryButton>
+    <animated.div className='container-fluid d-flex h-100 flex-column p-2 px-5' style={{...springs}}>
+      <div className="row flex-fill justify-content-center align-items-center mb-2">
+        <PrimaryButton onClickHandle={clickHandle}>Сдать багаж</PrimaryButton>
+      </div>
+      <div className="row flex-fill justify-content-center align-items-center mb-2">
+        <SecondaryButton onClickHandle={() => {  }}>Распечатать посадочный</SecondaryButton>
+      </div>
+      <div className="row flex-fill justify-content-center text-center align-items-end">
+        <h2><small className='text-muted'>Если вы не зарегистрированы</small></h2>
+      </div>
+      <div className="row flex-fill justify-content-center align-items-center">
+        <SecondaryButton onClickHandle={() => {  }}>Зарегистрироваться на рейс</SecondaryButton>
+      </div>
     </animated.div>
   );
 };

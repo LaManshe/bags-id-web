@@ -9,7 +9,7 @@ interface SecondaryButtonProps {
 
 const SecondaryButton: FC<SecondaryButtonProps> = ({onClickHandle, children, attributes = {}}: SecondaryButtonProps) => (
   <button 
-    className={styles.SecondaryButton} 
+    className={`${styles.SecondaryButton}`}  
     onClick={onClickHandle}
     {...attributes}>
       {setContent(children)}
@@ -18,7 +18,7 @@ const SecondaryButton: FC<SecondaryButtonProps> = ({onClickHandle, children, att
 
 const setContent = (content: ReactNode): ReactNode => {
   if (typeof(content) === 'string') {
-    return <span>{content}</span>
+    return <h1><strong>{content}</strong></h1>
   }
 
   return <>{content}</>

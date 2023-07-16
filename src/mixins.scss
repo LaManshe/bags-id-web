@@ -1,0 +1,10 @@
+@mixin breakpoint-h($bp){
+    @media screen and (max-height: $bp){
+        @content;
+    }
+}
+@mixin breakpoint($bp){
+    @media screen and (max-width: $bp){
+        @content;
+    }
+}

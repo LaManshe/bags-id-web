@@ -1,9 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import styles from './TicketVerifyPage.module.scss';
 import PrimaryButton from '../../ui/PrimaryButton/PrimaryButton';
 import SecondaryButton from '../../ui/SecondaryButton/SecondaryButton';
-import Spacer from '../../ui/Spacer/Spacer';
-import { Spinner, Status, WaitForScan } from '../../resources/ResourcesService';
+import { Spinner, SuccessWaitForScan, WaitForScan } from '../../resources/ResourcesService';
 import { useNavigate } from 'react-router-dom';
 import TicketService from '../../services/TicketService';
 import { ITicketData } from '../../services/http/interfaces/ITicketData';
@@ -53,31 +51,41 @@ const TicketVerifyPage: FC = () => {
   }
 
   return (
-    <div className={styles.TicketVerifyPage}>
-      <div className={styles.StatusImage}>
-        <img src={WaitForScan} className={styles.StatusBG}/>
-        {hasTicket && <img src={Status} className={styles.StatusOkImage}/>}
+    <div className="container-fluid d-flex flex-column h-100 text-center p-2">
+      <div className="row align-items-center mb-2" style={{height: "40%"}}>
+        <div className="col h-100">
+          <div className="image-wrapper h-100 position-relative">
+            <img src={hasTicket ? SuccessWaitForScan : WaitForScan} className={`img-contain`}/>
+          </div>
+        </div>
       </div>
-      <div className={styles.Title}>
-        {hasTicket 
-          ? <h3>Код принят, ищем данные <br /> вашего билета</h3>
-          : <h3>Отсканируйте штрих-код <br /> или QR-код <br /> посадочного талона</h3>}
+      <div className="row mb-2" style={{height: "30%"}}>
+        <div className="row">
+          {hasTicket 
+              ? <h3 className='display-4'>Код принят, ищем данные вашего билета</h3>
+              : <h3 className='display-4'>Отсканируйте штрих-код или QR-код посадочного талона</h3>}
+        </div>
+        <div className={`row ${hasTicket && 'opacity-0'}`}>
+          <h5 className='display-6'>Сканер кодов находится слева от экрана терминала</h5>
+        </div>
       </div>
-      <Spacer size={16} />
-      <div className={styles.Description}>
-        {hasTicket || <h5>Сканер кодов находится <br /> слева от экрана терминала</h5>}
+      <div className="row" style={{height: "30%"}}>
+        <div className="col d-flex flex-column">
+          <div className="row flex-fill align-items-end" style={{height: '5vh'}}>
+            {hasTicket
+              ? <h2><small className='text-muted'>Ждем от сервера данные билета...</small></h2>
+              : <h2><small className='text-muted'>Ждем сканирование кода...</small></h2>}
+          </div>
+          <div className="row flex-fill justify-content-center mb-2" style={{height: '5vh'}}>
+            <PrimaryButton onClickHandle={() => { }} attributes={{disabled: true}}>
+              <img src={Spinner} className='img-fluid-70' style={{height: '5vh'}}/>
+            </PrimaryButton>
+          </div>
+          <div className="row flex-fill justify-content-center" style={{height: '5vh'}}>
+            {hasTicket || <SecondaryButton onClickHandle={noPassHandle}>У меня нет посадочного</SecondaryButton>}
+          </div>
+        </div>
       </div>
-
-      <Spacer size={190} />
-      {hasTicket
-        ? <p>Ждем от сервера данные билета...</p>
-        : <p>Ждем сканирование кода...</p>}
-      <Spacer size={40} />
-      <PrimaryButton onClickHandle={() => { }} attributes={{disabled: true}}>
-        <img src={Spinner} />
-      </PrimaryButton>
-      <Spacer size={40} />
-      {hasTicket || <SecondaryButton onClickHandle={noPassHandle}>У меня нет посадочного</SecondaryButton>}
     </div>
   );
 }

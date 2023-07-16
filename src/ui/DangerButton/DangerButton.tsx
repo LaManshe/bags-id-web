@@ -18,7 +18,7 @@ const DangerButton: FC<DangerButtonProps> = ({onClickHandle, children, attribute
 
 const setContent = (content: ReactNode): ReactNode => {
   if (typeof(content) === 'string') {
-    return <span>{content}</span>
+    return <h1><strong>{content}</strong></h1>
   }
 
   return content;
