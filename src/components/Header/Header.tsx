@@ -14,7 +14,7 @@ const Header: FC = () => {
 
   return (
     <div className={`${styles.Header} ${contentAreaIsOpen && styles.open}`}>
-      <div className={styles.Background} />
+      {contentAreaIsOpen && <div className={styles.Background} />}
       <div className={styles.Content}>
         <div className={styles.LogoArea}>
           <img src={BagsIdLogo} />

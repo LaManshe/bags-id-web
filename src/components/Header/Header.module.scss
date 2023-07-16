@@ -27,6 +27,7 @@
     height: 100%;
     background-image: url('../../resources/images/HeaderBackground.png');
     opacity: 0;
+    animation: fadeIn .5s ease-in forwards;
 }
 
 @keyframes fadeIn {
@@ -42,9 +43,6 @@
 }
 
 .open {
-    & .Background {
-        animation: fadeIn .5s ease-in forwards;
-    }
     & .LogoArea {
         & img {
             width: 29.6rem;
